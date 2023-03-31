@@ -16,10 +16,10 @@ else
   GPG_FALLBACK=true
 fi
 
-echo -n "> Enter your Github name: "
+printf "> Enter your Github name: "
 read NAME
 
-echo -n "> Enter your Github e-mail address: "
+printf "> Enter your Github e-mail address: "
 read EMAIL
 
 if [ ! -z "$NAME" ] && [ ! -z "$EMAIL" ]
