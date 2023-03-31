@@ -41,9 +41,9 @@ then
   else
     gpg --full-generate-key
     git config --global --unset gpg.format
-    GPG_FINGERPRINT=$(gpg --list-secret-keys --keyid-format=LONG |grep sec | cut -d " " -f 4 | cut -d "/" -f 2)
-    git config --global user.signingKey $GPG_FINGERPRINT
-    GPG_PUB_KEY=$(gpg --armor --export $GPG_FINGERPRINT)
+    GPG_KEYID=$(gpg --list-secret-keys --keyid-format=LONG | grep sec | cut -d " " -f 4 | cut -d "/" -f 2)
+    git config --global user.signingKey $GPG_KEYID
+    GPG_PUB_KEY=$(gpg --armor --export $GPG_KEYID)
 
     export GPG_TTY=$(tty)
     [ -f $HOME/.bashrc ] && echo 'export GPG_TTY=$(tty)' >> $HOME/.bashrc
