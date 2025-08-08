@@ -3,11 +3,11 @@
 GIT_VERSION=$(git --version | cut -d " " -f 3-)
 REQUIRE_VER="2.34.0"
 
-VERSION_CHECK=$(echo "$GIT_VERSION\n$REQUIRE_VER" | sort -rV | head -n 1)
+VERSION_CHECK=$(echo "$GIT_VERSION\n$REQUIRE_VER" | sort -rV | head -c ${#REQUIRE_VER})
 
 printf "Github authorization and commit signing configuration script\n\nChecking for git version: $REQUIRE_VER+\nInstalled git version:    $GIT_VERSION\n"
 
-if [ $VERSION_CHECK = $GIT_VERSION ]
+if [ "$VERSION_CHECK" = "$GIT_VERSION" ]
 then
   printf "Your git version: $GIT_VERSION is compatible with SSH signing.\n\n"
   GPG_FALLBACK=false
